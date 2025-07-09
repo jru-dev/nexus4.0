@@ -874,6 +874,150 @@ body {
     background: #5a4fcf;
 }
 
+
+/* Estilos específicos para el contenedor de noticias con scroll */
+.news-container {
+    max-height: 400px; /* Altura máxima equivalente a ~2 noticias */
+    overflow-y: auto;
+    padding-right: 8px; /* Espacio para el scrollbar */
+}
+
+/* Estilos para cada noticia individual */
+.news-item {
+    margin-bottom: 24px;
+    background: #222;
+    padding: 16px;
+    border-radius: 8px;
+    border-left: 3px solid #6366f1;
+    transition: all 0.3s ease;
+}
+
+.news-item:hover {
+    background: #2a2a2a;
+    border-left-color: #8b5cf6;
+    transform: translateX(4px);
+}
+
+.news-date {
+    color: #aaa;
+    font-size: 0.95em;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.news-item h3 {
+    margin: 8px 0 12px 0;
+    color: #ffffff;
+    font-size: 1.1em;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.news-item p {
+    color: #cccccc;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    font-size: 0.95em;
+}
+
+.news-image {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    margin-top: 8px;
+    border-radius: 6px;
+    transition: transform 0.3s ease;
+}
+
+.news-image:hover {
+    transform: scale(1.05);
+}
+
+/* Personalizar el scrollbar para que se vea más moderno */
+.news-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.news-container::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 4px;
+}
+
+.news-container::-webkit-scrollbar-thumb {
+    background: #6366f1;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.news-container::-webkit-scrollbar-thumb:hover {
+    background: #8b5cf6;
+}
+
+/* Firefox scrollbar styling */
+.news-container {
+    scrollbar-width: thin;
+    scrollbar-color: #6366f1 #1a1a1a;
+}
+
+/* Indicador visual cuando hay contenido para hacer scroll */
+.news-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 8px;
+    height: 20px;
+    background: linear-gradient(transparent, rgba(34, 34, 34, 0.8));
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.news-section {
+    position: relative;
+}
+
+/* Mostrar el indicador cuando hay scroll disponible */
+.news-container.has-scroll::after {
+    opacity: 1;
+}
+
+/* Responsive - en móviles reducir la altura máxima */
+@media (max-width: 768px) {
+    .news-container {
+        max-height: 300px;
+    }
+    
+    .news-item {
+        padding: 12px;
+        margin-bottom: 16px;
+    }
+    
+    .news-image {
+        max-width: 150px;
+    }
+}
+
+/* Animación suave al cargar */
+.news-item {
+    animation: slideInUp 0.3s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.news-item:nth-child(1) { animation-delay: 0.1s; }
+.news-item:nth-child(2) { animation-delay: 0.2s; }
+.news-item:nth-child(3) { animation-delay: 0.3s; }
+.news-item:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
 /* Responsive para móviles */
 @media (max-width: 768px) {
     .category-search-section {
@@ -1003,4 +1147,5 @@ body {
         max-width: 100%;
     }
 }
+
 }

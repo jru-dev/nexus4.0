@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Game;           
 use App\Models\GameCategory;  
 use App\Models\News; 
+use App\Models\Review; // Agregar esta importación
 
 class HomeController extends Controller
 {
@@ -26,11 +27,19 @@ class HomeController extends Controller
         // Traer noticias más recientes
         $news = News::orderBy('date', 'desc')->take(3)->get();
         
+        // NUEVA LÍNEA: Traer 3 reseñas aleatorias con usuario y juego
+        $quickReviews = Review::with(['user', 'game'])
+            ->where('is_approved', true)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+        
         return view('home.index', compact(
             'carouselGames', 
             'specialOffers',
             'categories',
-            'news'
+            'news',
+            'quickReviews' // Agregar esta variable
         ));
     }
 

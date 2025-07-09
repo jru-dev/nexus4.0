@@ -1,3 +1,6 @@
+@php
+    use Illuminate\Support\Str;
+@endphp
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -219,42 +222,69 @@
           <!-- Noticias y actualizaciones -->
             <div class="news-section">
                 <h2>Noticias y actualizaciones</h2>
-                <br>        
-                @forelse($news as $item)
-                    <div class="news-item" style="margin-bottom: 24px; background: #222; padding: 16px; border-radius: 8px;">
-                        <div class="news-date" style="color: #aaa; font-size: 0.95em;">
-                            {{ \Carbon\Carbon::parse($item->date)->format('d M Y') }}
+                <br>
+                <div class="news-container">
+                    @forelse($news as $item)
+                        <div class="news-item">
+                            <div class="news-date">
+                                {{ \Carbon\Carbon::parse($item->date)->format('d M Y') }}
+                            </div>
+                            <h3>{{ $item->title }}</h3>
+                            <p>{{ $item->content }}</p>
+                            @if($item->image)
+                                <img src="{{ asset($item->image) }}" alt="Imagen noticia" class="news-image">
+                            @endif
                         </div>
-                        <h3 style="margin: 8px 0 4px 0;">{{ $item->title }}</h3>
-                        <p>{{ $item->content }}</p>
-                        @if($item->image)
-                            <img src="{{ asset($item->image) }}" alt="Imagen noticia" style="max-width:200px; margin-top:8px; border-radius:6px;">
-                        @endif
-                    </div>
-                @empty
-                    <div class="news-item">
-                        <p>No hay noticias disponibles.</p>
-                    </div>
-                @endforelse
+                    @empty
+                        <div class="news-item">
+                            <p>No hay noticias disponibles.</p>
+                        </div>
+                    @endforelse
+                </div>
             </div>
 
             <div class="reviews-section">
                 <h3 class="section-title">Reseñas rápidas</h3>
-                <div class="review-item">
-                    <div class="review-date">Subido hace 2 horas</div>
-                    <h4>Cyberpunk 2077: Phantom Liberty</h4>
-                    <p>Una expansión que redefine el juego base con una historia cautivadora.</p>
+                
+                @forelse($quickReviews as $review)
+                    <div class="review-item">
+                        <div class="review-date">Subido {{ $review->created_at->diffForHumans() }}</div>
+                        <h4>
+                            <a href="{{ route('game.show', $review->game->slug) }}" style="color: #fff; text-decoration: none;">
+                                {{ $review->game->title }}
+                            </a>
+                        </h4>
+                        <div class="review-rating" style="color: #ffc107; margin: 4px 0;">
+                            @for($i = 1; $i <= 5; $i++)
+                                {{ $i <= $review->rating ? '★' : '☆' }}
+                            @endfor
+                            <span style="color: #aaa; margin-left: 8px;">por {{ $review->user->name }}</span>
+                        </div>
+                        <p>{{ Str::limit($review->content, 80) }}</p>
+                        <div class="review-recommendation" style="margin-top: 8px;">
+                            @if($review->recommendation === 'recommended')
+                                <span style="color: #27ae60; font-size: 0.9em;">👍 Recomendado</span>
+                            @else
+                                <span style="color: #e74c3c; font-size: 0.9em;">👎 No recomendado</span>
+                            @endif
+                        </div>
                     </div>
-                <div class="review-item">
-                    <div class="review-date">Subido hace 5 horas</div>
-                    <h4>The Witcher 3: Wild Hunt</h4>
-                    <p>Sigue siendo el mejor RPG de mundo abierto años después.</p>
-                </div>
-                <div class="review-item">
-                    <div class="review-date">Subido hace 1 día</div>
-                    <h4>Resident Evil 4 Remake</h4>
-                    <p>Un remake perfecto que respeta el original mientras lo moderniza.</p>
-                </div>
+                @empty
+                    <div class="review-item">
+                        <div class="review-date">Sin reseñas disponibles</div>
+                        <h4>Aún no se han publicado reseñas</h4>
+                        <p>¡Sé el primero en compartir tu experiencia de juego! Compra un juego y escribe tu reseña.</p>
+                        @auth
+                            <a href="{{ route('library.index') }}" style="color: #3498db; text-decoration: none;">
+                                Ver mi biblioteca →
+                            </a>
+                        @else
+                            <a href="{{ route('register') }}" style="color: #27ae60; text-decoration: none;">
+                                Registrarse para escribir reseñas →
+                            </a>
+                        @endauth
+                    </div>
+                @endforelse
             </div>
         </div>
     </div>
@@ -331,6 +361,28 @@
                 screenshotsContainer.appendChild(itemDiv);
             });
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsContainer = document.querySelector('.news-container');
+            
+            if (newsContainer) {
+                // Verificar si hay contenido para hacer scroll
+                function checkScrollable() {
+                    if (newsContainer.scrollHeight > newsContainer.clientHeight) {
+                        newsContainer.classList.add('has-scroll');
+                    } else {
+                        newsContainer.classList.remove('has-scroll');
+                    }
+                }
+                
+                // Verificar al cargar y cuando cambie el tamaño
+                checkScrollable();
+                window.addEventListener('resize', checkScrollable);
+                
+                // Smooth scroll behavior
+                newsContainer.style.scrollBehavior = 'smooth';
+            }
+        });
 
         function changeHeroSlide(direction) {
             currentHeroIndex = (currentHeroIndex + direction + totalHeroSlides) % totalHeroSlides;

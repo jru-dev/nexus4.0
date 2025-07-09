@@ -101,6 +101,13 @@
                             <div class="action-description">Añadir nuevo juego al catálogo</div>
                         </div>
                     </a>
+                    <a href="{{ route('admin.news.create') }}" class="action-card primary">
+                        <div class="action-icon">➕</div>
+                        <div class="action-content">
+                            <div class="action-title">Subir noticia</div>
+                            <div class="action-description">Publica una nueva noticia</div>
+                        </div>
+                    </a>
                 </div>
             </div>
 
