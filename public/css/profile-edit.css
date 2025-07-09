@@ -1,0 +1,296 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #2c1810 0%, #1a0e2e 50%, #0f051a 100%);
+    color: white;
+    min-height: 100vh;
+}
+
+/* Header */
+.main-header {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #444;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-item {
+    color: #ccc;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.nav-item:hover, .nav-item.active {
+    background: #5a4fcf;
+    color: white;
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-icon {
+    position: relative;
+    color: #ccc;
+    font-size: 20px;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nexus-logo {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.logo-text {
+    color: white;
+    font-size: 1.2em;
+}
+
+/* Container de edición */
+.edit-profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.edit-form-card {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 30px;
+}
+
+.form-section {
+    margin-bottom: 30px;
+}
+
+.form-section h3 {
+    color: #5a4fcf;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    border-bottom: 2px solid #5a4fcf;
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    color: white;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #555;
+    border-radius: 8px;
+    color: white;
+    font-size: 1em;
+    transition: all 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #5a4fcf;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.form-input::placeholder {
+    color: #ccc;
+}
+
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Estilos para subida de foto */
+.photo-upload-section {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.current-photo {
+    text-align: center;
+}
+
+.photo-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #5a4fcf, #4a3fcf);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4em;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.photo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-upload {
+    flex: 1;
+}
+
+.file-input-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    background: #5a4fcf;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.file-input-wrapper:hover {
+    background: #4a3fcf;
+    transform: translateY(-2px);
+}
+
+.file-input-wrapper input[type="file"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.file-info {
+    margin-top: 10px;
+    color: #ccc;
+    font-size: 0.9em;
+}
+
+.save-btn {
+    background: linear-gradient(135deg, #27ae60, #219a52);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+}
+
+.cancel-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 15px;
+    transition: all 0.3s;
+}
+
+.cancel-btn:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.success-message {
+    background: rgba(39, 174, 96, 0.2);
+    border: 1px solid #27ae60;
+    color: #27ae60;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .photo-upload-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .nav-menu {
+        gap: 15px;
+    }
+    
+    .nav-item {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+    
+    .edit-form-card {
+        padding: 25px;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+    }
+    
+    .cancel-btn {
+        margin-right: 0;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+}

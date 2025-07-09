@@ -1,0 +1,607 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #2c1810 0%, #1a0e2e 50%, #0f051a 100%);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ===== HEADER DE DOS NIVELES ===== */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Nivel Superior */
+.header-top {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #444;
+}
+
+.main-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-item {
+    color: #ccc;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.95em;
+}
+
+.nav-item:hover, .nav-item.active {
+    background: #5a4fcf;
+    color: white;
+}
+
+.header-top-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-icon {
+    position: relative;
+    color: #ccc;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.cart-icon:hover {
+    color: white;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.nexus-logo {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.logo-text {
+    color: white;
+    font-size: 1.2em;
+}
+
+/* Nivel Inferior - Solo Búsqueda */
+.header-bottom {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.header-search-full {
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-form-header {
+    display: flex;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s;
+}
+
+.search-form-header:focus-within {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #5a4fcf;
+    box-shadow: 0 0 10px rgba(90, 79, 207, 0.3);
+}
+
+.search-input-header {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1em;
+    width: 100%;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.search-input-header::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.search-input-header:focus {
+    outline: none;
+}
+
+.search-btn-header {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.1em;
+}
+
+.search-btn-header:hover {
+    background: #5a4fcf;
+}
+
+/* Layout Principal */
+.library-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    height: calc(100vh - 120px);
+}
+
+/* Sidebar Estilo Steam */
+.library-sidebar {
+    background: rgba(0, 0, 0, 0.8);
+    border-right: 1px solid #444;
+    overflow-y: auto;
+    padding: 20px 0;
+}
+
+.sidebar-section {
+    margin-bottom: 20px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #ccc;
+    padding: 15px 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1em;
+    font-weight: 600;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-item:hover, .sidebar-item.active {
+    background: rgba(90, 79, 207, 0.3);
+    color: white;
+    border-left-color: #5a4fcf;
+}
+
+.sidebar-games-list {
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+}
+
+.sidebar-game {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-game:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-left-color: #5a4fcf;
+}
+
+.sidebar-game.active {
+    background: rgba(90, 79, 207, 0.3);
+    border-left-color: #5a4fcf;
+}
+
+.sidebar-game-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.sidebar-game-title {
+    font-size: 0.9em;
+    color: #ddd;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.no-games-sidebar {
+    padding: 20px;
+    text-align: center;
+    color: #ccc;
+    font-style: italic;
+}
+
+/* Contenido Principal - Grid Estilo Steam */
+.library-main {
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.games-steam-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.steam-game-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.steam-game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.steam-game-image {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+}
+
+.game-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.steam-game-card:hover .game-cover {
+    transform: scale(1.05);
+}
+
+/* Overlay de información */
+.game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.7) 70%,
+        rgba(0, 0, 0, 0.9) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+}
+
+.steam-game-card:hover .game-overlay {
+    opacity: 1;
+}
+
+.game-overlay-content {
+    width: 100%;
+}
+
+.overlay-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.overlay-developer {
+    font-size: 0.85em;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.overlay-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.8em;
+    color: #bbb;
+}
+
+.overlay-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.overlay-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.overlay-btn:hover {
+    background: #5a4fcf;
+    border-color: #5a4fcf;
+}
+
+.play-btn {
+    flex: 1;
+    background: #27ae60;
+    border-color: #27ae60;
+}
+
+.play-btn:hover {
+    background: #219a52;
+    border-color: #219a52;
+}
+
+/* Badges */
+.favorite-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 5px 8px;
+    border-radius: 15px;
+    font-size: 1.1em;
+    z-index: 2;
+}
+
+.status-indicator {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.status-playing {
+    background: #3498db;
+    box-shadow: 0 0 10px #3498db;
+}
+
+.status-completed {
+    background: #27ae60;
+    box-shadow: 0 0 10px #27ae60;
+}
+
+.status-not_played {
+    background: #95a5a6;
+}
+
+.status-abandoned {
+    background: #e74c3c;
+}
+
+/* Menú Contextual */
+.context-menu {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid #555;
+    border-radius: 8px;
+    padding: 8px 0;
+    min-width: 200px;
+    z-index: 10;
+    transform: scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s;
+}
+
+.context-menu.show {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.context-menu button {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 0.9em;
+}
+
+.context-menu button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.context-menu button.danger:hover {
+    background: rgba(231, 76, 60, 0.3);
+    color: #e74c3c;
+}
+
+.context-menu hr {
+    border: none;
+    border-top: 1px solid #555;
+    margin: 5px 0;
+}
+
+/* Estado Vacío */
+.empty-library-steam {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 400px;
+}
+
+.empty-content {
+    text-align: center;
+    max-width: 400px;
+}
+
+.empty-icon {
+    font-size: 5em;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-content h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.empty-content p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+.explore-btn {
+    background: #5a4fcf;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.explore-btn:hover {
+    background: #4a3fcf;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .library-container {
+        grid-template-columns: 250px 1fr;
+    }
+    
+    .games-steam-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+    
+    .main-nav {
+        gap: 15px;
+    }
+    
+    .nav-item {
+        padding: 8px 12px;
+        font-size: 0.85em;
+    }
+    
+    .library-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .library-sidebar {
+        display: none;
+    }
+    
+    .games-steam-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+    
+    .steam-game-image {
+        height: 240px;
+    }
+}
+
+@media (max-width: 480px) {
+    .library-main {
+        padding: 20px 15px;
+    }
+    
+    .games-steam-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .steam-game-image {
+        height: 200px;
+    }
+    
+    .overlay-actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* Scrollbar personalizado */
+.library-sidebar::-webkit-scrollbar,
+.library-main::-webkit-scrollbar,
+.sidebar-games-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.library-sidebar::-webkit-scrollbar-track,
+.library-main::-webkit-scrollbar-track,
+.sidebar-games-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.library-sidebar::-webkit-scrollbar-thumb,
+.library-main::-webkit-scrollbar-thumb,
+.sidebar-games-list::-webkit-scrollbar-thumb {
+    background: #5a4fcf;
+    border-radius: 4px;
+}
+
+.library-sidebar::-webkit-scrollbar-thumb:hover,
+.library-main::-webkit-scrollbar-thumb:hover,
+.sidebar-games-list::-webkit-scrollbar-thumb:hover {
+    background: #4a3fcf;
+}

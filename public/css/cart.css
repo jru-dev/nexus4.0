@@ -1,0 +1,352 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #2c1810 0%, #1a0e2e 50%, #0f051a 100%);
+    color: white;
+    min-height: 100vh;
+}
+
+/* Header */
+.main-header {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #444;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-item {
+    color: #ccc;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.95em;
+}
+
+.nav-item:hover, .nav-item.active {
+    background: #5a4fcf;
+    color: white;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-icon {
+    position: relative;
+    background: #7c3aed;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.2em;
+}
+
+.cart-icon:hover {
+    background: #6d28d9;
+    transform: translateY(-2px);
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.nexus-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-text {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.logout-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background: #c0392b;
+}
+
+/* Cart Container */
+.cart-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.cart-title {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 30px;
+    background: linear-gradient(45deg, #5a4fcf, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    grid-column: 1 / -1;
+}
+
+/* Cart Items */
+.cart-items {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+    align-items: center;
+}
+
+.cart-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.game-image {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.game-info {
+    flex: 1;
+}
+
+.game-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.game-category {
+    color: #5a4fcf;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.game-price {
+    font-size: 1.5em;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.remove-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.remove-btn:hover {
+    background: #c0392b;
+    transform: scale(1.05);
+}
+
+/* Cart Summary */
+.cart-summary {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 25px;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+.summary-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #5a4fcf;
+    text-align: center;
+    border-bottom: 2px solid #5a4fcf;
+    padding-bottom: 10px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.summary-row.total {
+    border-top: 2px solid #27ae60;
+    padding-top: 15px;
+    margin-top: 20px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.checkout-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #5a4fcf, #7c3aed);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(90, 79, 207, 0.4);
+}
+
+.checkout-btn:disabled {
+    background: #666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Empty Cart */
+.empty-cart {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+    color: #ccc;
+}
+
+.empty-icon {
+    font-size: 5em;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-cart h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.empty-cart p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.browse-btn {
+    background: #5a4fcf;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.browse-btn:hover {
+    background: #4a3fcf;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cart-container {
+        grid-template-columns: 1fr;
+        padding: 20px 15px;
+    }
+    
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .game-image {
+        align-self: center;
+    }
+    
+    .nav-menu {
+        gap: 15px;
+    }
+    
+    .nav-item {
+        padding: 8px 12px;
+        font-size: 0.85em;
+    }
+    
+    .header-right {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-title {
+        font-size: 2em;
+    }
+    
+    .main-header {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-menu {
+        gap: 10px;
+    }
+}
